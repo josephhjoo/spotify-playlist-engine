@@ -1,3 +1,4 @@
+import os
 from dotenv import load_dotenv
 
 # Loads .env file for Spotify API keys
@@ -9,7 +10,7 @@ from auth.spotify_auth import spotify_auth_bp
 
  # Create the web app and securely manage session data
 app = Flask(__name__)
-app.config["SECRET_KEY"] = "dev"
+app.config["SECRET_KEY"] = os.environ.get("FLASK_SECRET_KEY", "dev")
 
 # Registers main page and OAuth authentication routes
 app.register_blueprint(pages_bp)
